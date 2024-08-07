@@ -1,3 +1,11 @@
+import dish1 from '../assets/images/dish_01.png'
+import dish2 from '../assets/images/dish_02.png'
+import dish3 from '../assets/images/dish_03.png'
+import dish4 from '../assets/images/dish_04.png'
+import dish5 from '../assets/images/dish_05.png'
+import dish6 from '../assets/images/dish_06.png'
+import logo from '../assets/images/logo.png'
+
 function Checkout() {
   return (
     <div>
@@ -62,7 +70,7 @@ function Checkout() {
                     <div className="col-6 col-lg-4">
                         <div className="card">
                             <div className="card-body p-4">
-                                <img src="../assets/images/dish_01.png" className="w-75 d-block mx-auto" alt="Dish 01"></img>
+                                <img src={dish1} className="w-75 d-block mx-auto" alt="Dish 01"></img>
                                 <h4 className="card-title mt-4 mb-2">Cheesey Chicken</h4>
                                 <div
                                     className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-1">
@@ -77,6 +85,7 @@ function Checkout() {
                     <div className="col-6 col-lg-4">
                         <div className="card">
                             <div className="card-body p-4">
+                            <img src={dish2} className="w-75 d-block mx-auto" alt="Dish 02"></img>
                                 <h4 className="card-title mt-4 mb-2">Maxi Burger</h4>
                                 <div
                                     className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-1">
@@ -90,6 +99,7 @@ function Checkout() {
                     <div className="col-6 col-lg-4">
                         <div className="card">
                             <div className="card-body p-4">
+                            <img src={dish3} className="w-75 d-block mx-auto" alt="Dish 03"></img>
                                 <h4 className="card-title mt-4 mb-2">Double Burger</h4>
                                 <div
                                     className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-1">
@@ -103,6 +113,7 @@ function Checkout() {
                     <div className="col-6 col-lg-4">
                         <div className="card">
                             <div className="card-body p-4">
+                            <img src={dish4} className="w-75 d-block mx-auto" alt="Dish 04"></img>
                                 <h4 className="card-title mt-4 mb-2">Raw Marbled Meat Steak</h4>
                                 <div
                                     className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-1">
@@ -116,6 +127,7 @@ function Checkout() {
                     <div className="col-6 col-lg-4">
                         <div className="card">
                             <div className="card-body p-4">
+                            <img src={dish5} className="w-75 d-block mx-auto" alt="Dish 05"></img>
                                 <h4 className="card-title mt-4 mb-2">Beef Steak Grill Pan</h4>
                                 <div
                                     className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-1">
@@ -129,6 +141,7 @@ function Checkout() {
                     <div className="col-6 col-lg-4">
                         <div className="card">
                             <div className="card-body p-4">
+                            <img src={dish6} className="w-75 d-block mx-auto" alt="Dish 06"></img>
                                 <h4 className="card-title mt-4 mb-2">Double Marbled Meat Steak</h4>
                                 <div
                                     className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-1">
