@@ -1,12 +1,14 @@
-import "./App.css";
-import Login from "./components/Login.tsx";
+
+import './App.css'
+import Checkout from './components/Checkout.tsx'
 
 function App() {
+
   return (
     <>
-      <Login />
+        <Checkout/>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

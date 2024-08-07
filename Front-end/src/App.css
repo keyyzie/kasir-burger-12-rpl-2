@@ -32,6 +32,23 @@ a {
     font-weight: 700;
 }
 
+
+.add-button {
+  opacity: 0;
+  font-weight: 600;
+  border: none;
+  position: absolute;
+  margin-top: -35vh;
+  margin-left: -2vw;
+  width: 17vw;
+  height: 40vh;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
 .logo img {
     width: 24px;
 }
