@@ -1,0 +1,14 @@
+{
+  "name": "esarce",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "bdev": "cd Back-end && php artisan serve",
+    "fdev": "cd Front-end && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
