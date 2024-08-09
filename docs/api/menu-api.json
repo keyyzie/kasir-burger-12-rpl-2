@@ -1,0 +1,450 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Menu API",
+    "description": "API for menu",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000"
+    }
+  ],
+  "paths": {
+    "/api/menus": {
+      "get": {
+        "tags": ["Menu"],
+        "summary": "Get all menu items",
+        "description": "Get all menu items",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "description": "Category of the menu items",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get all menu items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "description": "Invalid or missing token",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Unauthorized"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Menu"],
+        "summary": "Create a new menu item",
+        "description": "Create a new menu item",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMenuItemRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success create a new menu item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuItemResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Validation Error": {
+                    "description": "Validation error",
+                    "value": {
+                      "errors": {
+                        "name": ["Name is required"],
+                        "category": ["Category is required"],
+                        "price": ["Price is required"],
+                        "image": ["Image is required"]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "description": "Invalid or missing token",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Unauthorized"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/menus/{id}": {
+      "get": {
+        "tags": ["Menu"],
+        "summary": "Get a menu item by ID",
+        "description": "Get a menu item by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the menu item",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get a menu item by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuItemResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Menu item not found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Menu Item Not Found": {
+                    "description": "Menu item not found",
+                    "value": {
+                      "errors": {
+                        "message": ["Menu item with the given ID does not exist"]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "description": "Invalid or missing token",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Unauthorized"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Menu"],
+        "summary": "Update a menu item by ID",
+        "description": "Update a menu item by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the menu item",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMenuItemRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success update a menu item by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuItemResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Validation Error": {
+                    "description": "Validation error",
+                    "value": {
+                      "errors": {
+                        "name": ["Name is required"],
+                        "category": ["Category is required"],
+                        "price": ["Price is required"],
+                        "image": ["Image is required"]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Menu item not found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Menu Item Not Found": {
+                    "description": "Menu item not found",
+                    "value": {
+                      "errors": {
+                        "message": ["Menu item with the given ID does not exist"]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "description": "Invalid or missing token",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Unauthorized"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Menu"],
+        "summary": "Delete a menu item by ID",
+        "description": "Delete a menu item by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the menu item",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success delete a menu item by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "string",
+                      "example": "Menu item deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Menu item not found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Menu Item Not Found": {
+                    "description": "Menu item not found",
+                    "value": {
+                      "errors": {
+                        "message": ["Menu item with the given ID does not exist"]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "description": "Invalid or missing token",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Unauthorized"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MenuListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuItem"
+            }
+          }
+        }
+      },
+      "MenuItemResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/MenuItem"
+          }
+        }
+      },
+      "MenuItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Nasi Goreng"
+          },
+          "category": {
+            "type": "string",
+            "example": "Makanan"
+          },
+          "price": {
+            "type": "number",
+            "example": 10000
+          },
+          "image": {
+            "type": "string",
+            "example": "https://example.com/image.jpg"
+          }
+        }
+      },
+      "CreateMenuItemRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Nasi Goreng"
+          },
+          "category": {
+            "type": "string",
+            "example": "Makanan"
+          },
+          "price": {
+            "type": "number",
+            "example": 10000
+          },
+          "image": {
+            "type": "string",
+            "example": "https://example.com/image.jpg"
+          }
+        }
+      },
+      "UpdateMenuItemRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Nasi Goreng"
+          },
+          "category": {
+            "type": "string",
+            "example": "Makanan"
+          },
+          "price": {
+            "type": "number",
+            "example": 10000
+          },
+          "image": {
+            "type": "string",
+            "example": "https://example.com/image.jpg"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Dashboard API",
+    "description": "API for dashboard data",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000"
+    }
+  ],
+  "paths": {
+    "/api/dashboard": {
+        "get": {
+            "tags": ["Dashboard"],
+            "summary": "Get dashboard summary",
+            "description": "Get dashboard summary",
+            "responses": {
+                "200": {
+                    "description": "Success get dashboard summary",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "menu_count": {
+                                        "type": "number"
+                                    },
+                                    "daily_revenue": {
+                                        "type": "number"
+                                    },
+                                    "order_count": {
+                                        "type": "number"
+                                    },
+                                    "cashier_count": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+  }
+}

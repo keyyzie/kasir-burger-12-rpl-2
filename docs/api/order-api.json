@@ -1,0 +1,416 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Order API",
+    "description": "API for order",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000"
+    }
+  ],
+  "paths": {
+    "/api/orders": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Get all orders",
+        "description": "Get all orders",
+        "responses": {
+          "200": {
+            "description": "Success get all orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "description": "Invalid or missing token",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Unauthorized"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Create a new order",
+        "description": "Create a new order",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success create a new order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Validation Error": {
+                    "description": "Validation error",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Invalid request body"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "description": "Invalid or missing token",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Unauthorized"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Get order by id",
+        "description": "Get order by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the order",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get order by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order not found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Order Not Found": {
+                    "description": "Order not found",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Order with the given ID does not exist"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "description": "Invalid or missing token",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Unauthorized"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Update order",
+        "description": "Update order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the order",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success update order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Bad Request": {
+                    "description": "Invalid request body",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Invalid request body"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "description": "Invalid or missing token",
+                    "value": {
+                      "errors": {
+                        "message": [
+                          "Unauthorized"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "OrderListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Order"
+            }
+          }
+        }
+      },
+      "OrderResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Order"
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "order_code": {
+            "type": "string",
+            "example": "1234567890"
+          },
+          "cashier_name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "customer_name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Nasi Goreng"
+                },
+                "quantity": {
+                  "type": "number",
+                  "example": 1
+                },
+                "unit_price": {
+                  "type": "number",
+                  "example": 35000
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "paid"
+          },
+          "sub_total": {
+            "type": "number",
+            "example": 10000
+          },
+          "tax": {
+            "type": "number",
+            "example": 1000
+          },
+          "total": {
+            "type": "number",
+            "example": 10000
+          },
+          "cash": {
+            "type": "number",
+            "example": 10000
+          },
+          "change": {
+            "type": "number",
+            "example": 10000
+          }
+        }
+      },
+      "CreateOrderRequest": {
+        "type": "object",
+        "properties": {
+          "cashier_id": {
+            "type": "number",
+            "example": 1
+          },
+          "customer_name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "product_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "quantity": {
+                  "type": "number",
+                  "example": 1
+                }
+              }
+            }
+          },
+          "sub_total": {
+            "type": "number",
+            "example": 229000
+          },
+          "tax": {
+            "type": "number",
+            "example": 12000
+          },
+          "total": {
+            "type": "number",
+            "example": 241000
+          },
+          "cash": {
+            "type": "number",
+            "example": 250000
+          }
+        }
+      },
+      "UpdateOrderRequest": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "paid"
+          }
+        }
+      }
+    }
+  }
+}
