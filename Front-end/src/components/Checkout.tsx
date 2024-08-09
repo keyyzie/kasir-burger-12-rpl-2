@@ -6,12 +6,26 @@ import dish4 from '../assets/images/dish_04.png'
 import dish5 from '../assets/images/dish_05.png'
 import dish6 from '../assets/images/dish_06.png'
 import Tab from './Tab'
+import { useUser } from '../hooks/useUser'
+import { useNavigate } from 'react-router-dom'
+import apiClient from '../utils/axios'
 //import logo from '../assets/images/logo.png'
 
 
 
 function Checkout() {
   const [CartStuff, setCartStuff] = useState<CartTypes[]>([])
+  
+  const {user, setUser} = useUser();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    const response = await apiClient.post("http://localhost:8000/api/logout");
+    console.log(response);
+    setUser(null);
+    navigate("/login");
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-white py-3">
@@ -43,7 +57,7 @@ function Checkout() {
                   <li>
                     <hr className="dropdown-divider"></hr>
                   </li>
-                  <li><a className="dropdown-item" href="#">Log Out</a></li>
+                  <li><a className="dropdown-item" onClick={handleLogout}>Log Out</a></li>
                 </ul>
               </li>
             </ul>

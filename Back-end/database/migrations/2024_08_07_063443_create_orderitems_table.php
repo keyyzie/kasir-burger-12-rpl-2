@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('orderitems', function (Blueprint $table) {
             $table->id();
             $table->integer('order_id');
-            $table->integer('product_id');
+            $table->integer('menu_id');
+            $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();
+            $table->foreign('menu_id')->references('id')->on('menus')->cascadeOnDelete();
             $table->integer('quantity');
-            $table->integer('unit_price');
+            $table->decimal('unit_price', 10, 2);
             $table->timestamps();  
         });
     }

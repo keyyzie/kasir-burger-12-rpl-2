@@ -1,0 +1,59 @@
+@startuml
+' hide the spot
+' hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "User" {
+    *id: INT PRIMARY_KEY
+    --
+    *name: VARCHAR
+    *email: VARCHAR
+    *password: VARCHAR
+    *role: VARCHAR
+}
+
+entity "Category" {
+    *id: INT PRIMARY_KEY
+    --
+    *name: VARCHAR
+}
+
+entity "Menu" {
+    *id: INT PRIMARY_KEY
+    --
+    *name: VARCHAR
+    *price: DECIMAL
+    *stock: INT
+    *image: VARCHAR
+    *category_id: INT
+}
+
+entity "Order" {
+    *id: INT PRIMARY_KEY
+    --
+    *order_code: VARCHAR
+    *user_id: INT
+    *customer_name: VARCHAR
+    *subtotal: DECIMAL
+    *total: DECIMAL
+    *tax: DECIMAL
+    *cash: DECIMAL
+    *change: DECIMAL,
+    *status: ENUM('pending', 'paid', 'canceled')
+}
+
+entity "OrderItems" {
+    *id: INT PRIMARY_KEY
+    --
+    *order_id: INT
+    *product_id: INT
+    *quantity: INT
+    *unit_price: DECIMAL
+}
+
+"User" |o--o{ "Order"
+"Category" ||--|{ "Product"
+"Order" ||--|{ "OrderItems"
+@enduml

@@ -14,13 +14,15 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_code');
-            $table->string("username");
-            $table->integer("total");
-            $table->integer("tax");
-            $table->integer("cash");
-            $table->integer("change");
-            $table->string("status");
-            $table->string("created_by");
+            $table->unsignedBigInteger("user_id");
+            $table->foreign("user_id")->references("id")->on("users")->cascadeOnDelete();
+            $table->string("customer_name");
+            $table->decimal("subtotal", 10, 2);
+            $table->decimal("total", 10, 2);
+            $table->decimal("tax", 10, 2);
+            $table->decimal("cash", 10, 2);
+            $table->decimal("change", 10, 2);
+            $table->enum("status", ["pending", "paid", "cancelled"])->default("pending");
             $table->timestamps();
         });
     }
